@@ -1,0 +1,6 @@
+db.sqlite3
+superlists/settings.pyc
+superlists/__init__.pyc
+superlists/urls.pyc
+superlists/wsgi.pyc
+*.pyc
