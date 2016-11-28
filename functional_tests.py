@@ -27,30 +27,22 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn("To-Do", header_text)
 
         # She is invited to enter a to-do item straight away
-        inputbox = self.browser.find_element_by_id('id_new_item')
-        self.assertEqual(
-            inputbox.get_attribute('placeholder'),
-            'Enter a to-do item'
-        )
-
         # She types "Buy Will a present" into a text box
+        inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy Will\'s present')
-
-        # When she hits eneter, the page updates, and now the page lists
-        # "#1: Buy Will a present" as an item in a to-do list
         inputbox.send_keys(Keys.ENTER)
 
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1: Buy Will\'s present', [row.text for row in rows])
+        # When she hits enter, the page updates, and now the page lists
+        # "#1: Buy Will a present" as an item in a to-do list
+        self.check_for_row_in_list_table('1: Buy Will\'s present')
 
         # There is still a text box inviting her to add another item.
         # She enters "Buy Will another present"
-        self.assertIn('2: Buy Will another present',
-            [row.text for row in rows]
-        )
-
-
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Buy Will another present')
+        inputbox.send_keys(Keys.ENTER)
+        self.check_for_row_in_list_table('1: Buy Will\'s present')
+        self.check_for_row_in_list_table('2: Buy Will another present')
 
         #The page updates again, and now shows both items on her lists
 
