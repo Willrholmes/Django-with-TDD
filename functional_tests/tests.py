@@ -61,8 +61,8 @@ class NewVisitorTest(LiveServerTestCase):
         self.check_for_row_in_list_table('1: Buy Will\'s present')
 
         # she notices that her list has a unique URL
-        edith_list_url = self.browser.current_url
-        self.assertRegex(edith_list_url, '/lists/.+')
+        rosie_list_url = self.browser.current_url
+        self.assertRegex(rosie_list_url, '/lists/.+')
 
         # New user, Ned, comes along to the site
 
@@ -82,7 +82,13 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
-        self.check_for_row_in_list_table('1. Buy milk')
+        self.check_for_row_in_list_table('1: Buy milk')
+
+        # Ned gets his own unique URL
+        ned_list_url = self.browser.current_url
+        self.assertRegex(ned_list_url, '/lists/.+')
+        self.assertNotEqual(ned_list_url, rosie_list_url)
+
 
         # Again there is no trace of Rosie's list
         page_text = self.browser.find_element_by_tag_name('body').text
