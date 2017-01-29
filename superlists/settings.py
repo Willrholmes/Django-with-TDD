@@ -27,7 +27,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['staging.superlists.eyesonthepies.co.uk']
+ALLOWED_HOSTS = ['staging.superlists.eyesonthepies.co.uk', 'localhost:8000',]
 
 
 # Application definition
