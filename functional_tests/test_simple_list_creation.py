@@ -16,7 +16,7 @@ class NewVisitorTest(FunctionalTest):
 
         # She is invited to enter a to-do item straight away
         # She types "Buy Will a present" into a text box
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Buy Will\'s present')
         inputbox.send_keys(Keys.ENTER)
 
@@ -26,7 +26,7 @@ class NewVisitorTest(FunctionalTest):
 
         # There is still a text box inviting her to add another item.
         # She enters "Buy Will another present"
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Buy Will another present')
         inputbox.send_keys(Keys.ENTER)
         self.check_for_row_in_list_table('1: Buy Will\'s present')
@@ -42,7 +42,7 @@ class NewVisitorTest(FunctionalTest):
     def test_multiple_users_can_start_lists_at_different_urls(self):
         #Rosie starts a new todo list
         self.browser.get(self.server_url)
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Buy Will\'s present')
         inputbox.send_keys(Keys.ENTER)
         self.check_for_row_in_list_table('1: Buy Will\'s present')
@@ -66,7 +66,7 @@ class NewVisitorTest(FunctionalTest):
 
         # Ned starts a new list by entering a new item. He
         # is less interesting than Rosie...
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
         self.check_for_row_in_list_table('1: Buy milk')
