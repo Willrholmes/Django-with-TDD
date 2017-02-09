@@ -22,15 +22,15 @@ class NewVisitorTest(FunctionalTest):
 
         # When she hits enter, the page updates, and now the page lists
         # "#1: Buy Will a present" as an item in a to-do list
-        self.check_for_row_in_list_table('1: Buy Will\'s present')
+        self.wait_for_row_in_list_table('1: Buy Will\'s present')
 
         # There is still a text box inviting her to add another item.
         # She enters "Buy Will another present"
         inputbox = self.get_item_input_box()
         inputbox.send_keys('Buy Will another present')
         inputbox.send_keys(Keys.ENTER)
-        self.check_for_row_in_list_table('1: Buy Will\'s present')
-        self.check_for_row_in_list_table('2: Buy Will another present')
+        self.wait_for_row_in_list_table('1: Buy Will\'s present')
+        self.wait_for_row_in_list_table('2: Buy Will another present')
 
         #The page updates again, and now shows both items on her lists
 
@@ -45,7 +45,7 @@ class NewVisitorTest(FunctionalTest):
         inputbox = self.get_item_input_box()
         inputbox.send_keys('Buy Will\'s present')
         inputbox.send_keys(Keys.ENTER)
-        self.check_for_row_in_list_table('1: Buy Will\'s present')
+        self.wait_for_row_in_list_table('1: Buy Will\'s present')
 
         # she notices that her list has a unique URL
         rosie_list_url = self.browser.current_url
@@ -69,7 +69,7 @@ class NewVisitorTest(FunctionalTest):
         inputbox = self.get_item_input_box()
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
-        self.check_for_row_in_list_table('1: Buy milk')
+        self.wait_for_row_in_list_table('1: Buy milk')
 
         # Ned gets his own unique URL
         ned_list_url = self.browser.current_url
